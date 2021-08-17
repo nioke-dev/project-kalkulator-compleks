@@ -365,6 +365,40 @@ public class speed_calculate extends javax.swing.JFrame {
         // TODO add your handling code here:
         int length = lblFrom.getText().length();
         int number = lblFrom.getText().length() - 1;
+        String store;
+//      declare  two integer variable i.e lenght and number.
+//      length() is a method to return the length of the string.
+//      example :-
+//      if textfield contain 'car'
+//      then the length is 3.
+//      length() -1 means subtract 1 from length
+
+        if (length > 0) {
+            StringBuilder back = new StringBuilder(lblFrom.getText());
+            back.deleteCharAt(number);
+            store = back.toString();
+            lblFrom.setText(store);
+        /*
+            declare 'store' variable which datatype is string.
+            
+            StringBuilder is Creates empty string builder, which is used to store
+            Strings.
+            
+            back is object of StringBuilder.
+            
+            (jtextfield1.getText()); -> the value of the text field is stored in StringBuilder 'back'
+            
+            back.deleteChartAt(number); -> deleteChartAt() is a method used to delete a single character from
+            specific position.
+            
+            (number); here i declared 'number' variable bcoz i want delete length 1 by one.
+            
+            store = back.toString(); -> convert StringBuilder 'back' into string.
+            bcoz Textfield only take String Values.
+            
+            jtextFiel1.settext(store); -> 'store' variable set in setText() method.
+            */                   
+        }
     }//GEN-LAST:event_btn_hapusActionPerformed
 
     /**
