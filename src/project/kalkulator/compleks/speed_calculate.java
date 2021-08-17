@@ -65,7 +65,7 @@ public class speed_calculate extends javax.swing.JFrame {
         AngkaDelapan = new javax.swing.JButton();
         AngkaTujuh = new javax.swing.JButton();
         btnKoma = new javax.swing.JButton();
-        AngkaNol = new javax.swing.JButton();
+        btn_convert = new javax.swing.JButton();
         btn_hapus = new javax.swing.JButton();
         btn_ce = new javax.swing.JButton();
         AngkaEnam = new javax.swing.JButton();
@@ -78,6 +78,7 @@ public class speed_calculate extends javax.swing.JFrame {
         AngkaDua = new javax.swing.JButton();
         AngkaSatu = new javax.swing.JButton();
         AngkaTiga = new javax.swing.JButton();
+        AngkaNol = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -126,14 +127,14 @@ public class speed_calculate extends javax.swing.JFrame {
         });
         speedcalculate_pane.add(btnKoma, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 450, -1, -1));
 
-        AngkaNol.setText("0");
-        AngkaNol.setPreferredSize(new java.awt.Dimension(96, 45));
-        AngkaNol.addActionListener(new java.awt.event.ActionListener() {
+        btn_convert.setText("Convert");
+        btn_convert.setPreferredSize(new java.awt.Dimension(96, 45));
+        btn_convert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AngkaNolActionPerformed(evt);
+                btn_convertActionPerformed(evt);
             }
         });
-        speedcalculate_pane.add(AngkaNol, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 450, -1, -1));
+        speedcalculate_pane.add(btn_convert, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, -1, -1));
 
         btn_hapus.setText("<--");
         btn_hapus.setPreferredSize(new java.awt.Dimension(96, 45));
@@ -185,6 +186,11 @@ public class speed_calculate extends javax.swing.JFrame {
         speedcalculate_pane.add(lblFrom, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
 
         cmbFrom.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kilometer Per Hour", "Miles Per Hour", "Knots", "Centimetres Per Second", "Meters Per Second", "Feet Per Second" }));
+        cmbFrom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbFromActionPerformed(evt);
+            }
+        });
         speedcalculate_pane.add(cmbFrom, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 120, -1));
 
         cmbTo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kilometer Per Hour", "Miles Per Hour", "Knots", "Centimetres Per Second", "Meters Per Second", "Feet Per Second" }));
@@ -225,6 +231,15 @@ public class speed_calculate extends javax.swing.JFrame {
             }
         });
         speedcalculate_pane.add(AngkaTiga, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 400, -1, -1));
+
+        AngkaNol.setText("0");
+        AngkaNol.setPreferredSize(new java.awt.Dimension(96, 45));
+        AngkaNol.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AngkaNolActionPerformed(evt);
+            }
+        });
+        speedcalculate_pane.add(AngkaNol, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 450, -1, -1));
 
         getContentPane().add(speedcalculate_pane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 500));
 
@@ -330,7 +345,7 @@ public class speed_calculate extends javax.swing.JFrame {
     }//GEN-LAST:event_AngkaSatuActionPerformed
 
     private void AngkaTigaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AngkaTigaActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:        
         String Ambil_nilai_nul = lblFrom.getText();
         if (Ambil_nilai_nul.equals("0")) {
             Ambil_nilai_nul = "";    
@@ -340,24 +355,27 @@ public class speed_calculate extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_AngkaTigaActionPerformed
 
-    private void AngkaNolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AngkaNolActionPerformed
+    private void btn_convertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_convertActionPerformed
         // TODO add your handling code here:
-        String Ambil_nilai_nul = lblFrom.getText();
-        if (Ambil_nilai_nul.equals("0")) {
-            Ambil_nilai_nul = "";    
-            lblFrom.setText(Ambil_nilai_nul + '0');
-        }else{
-            lblFrom.setText(Ambil_nilai_nul + '0');
+        double result;
+        double AmbilNilai = Double.parseDouble(lblFrom.getText());
+        if (cmbFrom.getSelectedItem().equals("Miles Per Hour") && cmbTo.getSelectedItem().equals("Kilometer Per Hour")) {
+            result = 1.609 * AmbilNilai;
+            lblTo.setText(String.format("%.3f",result) + " Kilometers Per Hour");
+        }else if(cmbFrom.getSelectedItem().equals("Kilometer Per Hour") && cmbTo.getSelectedItem().equals("Miles Per Hour")){
+            result = AmbilNilai / 1.609;
+            lblTo.setText(String.format("%.3f",result) + " Kilometers Per Hour");
         }
-    }//GEN-LAST:event_AngkaNolActionPerformed
+    }//GEN-LAST:event_btn_convertActionPerformed
 
     private void btnKomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKomaActionPerformed
         // TODO add your handling code here:
         String Ambil_nilai_koma = lblFrom.getText();
-        if (Ambil_nilai_koma.contains(",")) {
-            JOptionPane.showMessageDialog(null, "woiii");
+        if (Ambil_nilai_koma.contains(".")) {
+            JOptionPane.showMessageDialog(null, "Dilarang Menggunakan double ','");
+            System.exit(0);
         }else{
-            lblFrom.setText(Ambil_nilai_koma + ',');
+            lblFrom.setText(Ambil_nilai_koma + '.');
         }
     }//GEN-LAST:event_btnKomaActionPerformed
 
@@ -400,6 +418,22 @@ public class speed_calculate extends javax.swing.JFrame {
             */                   
         }
     }//GEN-LAST:event_btn_hapusActionPerformed
+
+    private void cmbFromActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbFromActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_cmbFromActionPerformed
+
+    private void AngkaNolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AngkaNolActionPerformed
+        // TODO add your handling code here:
+        String Ambil_nilai_nul = lblFrom.getText();
+        if (Ambil_nilai_nul.equals("0")) {
+            Ambil_nilai_nul = "";    
+            lblFrom.setText(Ambil_nilai_nul + '0');
+        }else{
+            lblFrom.setText(Ambil_nilai_nul + '0');
+        }
+    }//GEN-LAST:event_AngkaNolActionPerformed
 
     /**
      * @param args the command line arguments
@@ -450,6 +484,7 @@ public class speed_calculate extends javax.swing.JFrame {
     private javax.swing.JLabel My_Calculator;
     private javax.swing.JButton btnKoma;
     private javax.swing.JButton btn_ce;
+    private javax.swing.JButton btn_convert;
     private javax.swing.JButton btn_hapus;
     private javax.swing.JComboBox<String> cmbFrom;
     private javax.swing.JComboBox<String> cmbTo;
