@@ -249,6 +249,7 @@ public class speed_calculate extends javax.swing.JFrame {
     private void btn_ceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ceActionPerformed
         // TODO add your handling code here:
         lblFrom.setText("0");
+        lblTo.setText("0");
     }//GEN-LAST:event_btn_ceActionPerformed
 
     private void AngkaDuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AngkaDuaActionPerformed
