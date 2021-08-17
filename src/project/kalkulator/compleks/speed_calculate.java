@@ -79,6 +79,11 @@ public class speed_calculate extends javax.swing.JFrame {
         AngkaSatu = new javax.swing.JButton();
         AngkaTiga = new javax.swing.JButton();
         AngkaNol = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        Mode = new javax.swing.JMenu();
+        standartMode = new javax.swing.JMenuItem();
+        speedMode = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -191,7 +196,7 @@ public class speed_calculate extends javax.swing.JFrame {
                 cmbFromActionPerformed(evt);
             }
         });
-        speedcalculate_pane.add(cmbFrom, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 120, -1));
+        speedcalculate_pane.add(cmbFrom, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 150, -1));
 
         cmbTo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kilometer Per Hour", "Miles Per Hour", "Knots", "Centimetres Per Second", "Meters Per Second", "Feet Per Second" }));
         cmbTo.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -199,7 +204,7 @@ public class speed_calculate extends javax.swing.JFrame {
                 cmbToKeyReleased(evt);
             }
         });
-        speedcalculate_pane.add(cmbTo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 120, -1));
+        speedcalculate_pane.add(cmbTo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 150, -1));
 
         lblTo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lblTo.setText("0");
@@ -242,6 +247,28 @@ public class speed_calculate extends javax.swing.JFrame {
         speedcalculate_pane.add(AngkaNol, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 450, -1, -1));
 
         getContentPane().add(speedcalculate_pane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 500));
+
+        Mode.setText("Mode");
+
+        standartMode.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.ALT_MASK));
+        standartMode.setText("Standart");
+        standartMode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                standartModeActionPerformed(evt);
+            }
+        });
+        Mode.add(standartMode);
+
+        speedMode.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.ALT_MASK));
+        speedMode.setText("Speed");
+        Mode.add(speedMode);
+
+        jMenuBar1.add(Mode);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -362,10 +389,22 @@ public class speed_calculate extends javax.swing.JFrame {
         double AmbilNilai = Double.parseDouble(lblFrom.getText());
         if (cmbFrom.getSelectedItem().equals("Miles Per Hour") && cmbTo.getSelectedItem().equals("Kilometer Per Hour")) {
             result = 1.609 * AmbilNilai;
-            lblTo.setText(String.format("%.3f",result) + " Kilometers Per Hour");
+            lblTo.setText(String.format("%.3f",result) + " Kmh");
         }else if(cmbFrom.getSelectedItem().equals("Kilometer Per Hour") && cmbTo.getSelectedItem().equals("Miles Per Hour")){
             result = AmbilNilai / 1.609;
-            lblTo.setText(String.format("%.3f",result) + " Kilometers Per Hour");
+            lblTo.setText(String.format("%.3f",result) + " mph");
+        }else if(cmbFrom.getSelectedItem().equals("Kilometer Per Hour") && cmbTo.getSelectedItem().equals("Knots")){
+            result = AmbilNilai / 1.852;
+            lblTo.setText(String.format("%.3f",result) + " Kts");
+        }else if(cmbFrom.getSelectedItem().equals("Kilometer Per Hour") && cmbTo.getSelectedItem().equals("Centimetres Per Second")){
+            result = AmbilNilai * 27.778;
+            lblTo.setText(String.format("%.3f",result) + " Cm/s");
+        }else if(cmbFrom.getSelectedItem().equals("Kilometer Per Hour") && cmbTo.getSelectedItem().equals("Meters Per Second")){
+            result = AmbilNilai / 3.6;
+            lblTo.setText(String.format("%.3f",result) + " mps");
+        }else if(cmbFrom.getSelectedItem().equals("Kilometer Per Hour") && cmbTo.getSelectedItem().equals("Feet Per Second")){
+            result = AmbilNilai / 1.097;
+            lblTo.setText(String.format("%.3f",result) + " ft/s");
         }
     }//GEN-LAST:event_btn_convertActionPerformed
 
@@ -436,6 +475,10 @@ public class speed_calculate extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_AngkaNolActionPerformed
 
+    private void standartModeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_standartModeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_standartModeActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -482,6 +525,7 @@ public class speed_calculate extends javax.swing.JFrame {
     private javax.swing.JButton AngkaSembilan;
     private javax.swing.JButton AngkaTiga;
     private javax.swing.JButton AngkaTujuh;
+    private javax.swing.JMenu Mode;
     private javax.swing.JLabel My_Calculator;
     private javax.swing.JButton btnKoma;
     private javax.swing.JButton btn_ce;
@@ -489,8 +533,12 @@ public class speed_calculate extends javax.swing.JFrame {
     private javax.swing.JButton btn_hapus;
     private javax.swing.JComboBox<String> cmbFrom;
     private javax.swing.JComboBox<String> cmbTo;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel lblFrom;
     private javax.swing.JLabel lblTo;
+    private javax.swing.JMenuItem speedMode;
     private javax.swing.JPanel speedcalculate_pane;
+    private javax.swing.JMenuItem standartMode;
     // End of variables declaration//GEN-END:variables
 }
